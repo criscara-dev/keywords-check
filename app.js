@@ -10,16 +10,16 @@ document.getElementById('btn').addEventListener('click', function() {
  //document.getElementById('output').innerHTML = string;
 
  // now I eliminate chars that I don't need plus I filter to eliminate empty spaces:
- var array = string.split(/[ ,()'!`"=_¬|{.#@<}+>;:/]+/).filter(Boolean);
+ var array = string.split(/[ ,()'!-"[=_¬|{.#@<}+.>;?:/]+/).filter(Boolean);
  //console.log(array);
 
  // find and print array lenght
  var arrayLength = array.length;
  //console.log(arrayLength);
 
- // make a copy of the original array:
- var arCopy = array.slice();
- console.log(arCopy);
+ // make a copy of the original array and sort it out:
+ var arCopySorted = array.slice().sort();
+ console.log(arCopySorted);
 
  
  // loop through array and print result to the html
@@ -27,35 +27,91 @@ document.getElementById('btn').addEventListener('click', function() {
   // this will show each word on a new line 
   // 1) document.write(array[i],"</br>"); 
   // 2) document.write("<h1>" + array[i] + "</h1>"); 
- // 3) write to the console the words
-  (function() {
-   var y = i;
-   array.valueOf[i] = function() {return y};
-  })();
+ 
   console.log(array[i]);
   
  }
 
-
+/*
  // 4) loop over my array
  array.forEach(function(currentValue, index, ar) {
   //console.log(currentValue, index, ar);
   document.getElementById('output').innerHTML = ar;
  });
+*/
+ 
+ 
+ 
+ // find if has or not duplicates:
+ 
+ /*function findDuplicate(array) {
+  
+  var i, iS = 0;
+  for (i = 0; i < arrayLength; i++) {
+   for (iS = i+1; iS < arrayLength; iS++) {
+    if(array[i] === array[iS]) return true;
+  }
+ }
+  return false;
+  
+  
+ }
+  if ( findDuplicate(array) ) document.write('yes!');
 
- // examples of accessing an element of array
- //console.log(array[0]); // first element of array
- //console.log(Array.isArray(array));// checking if array is really an array:
- //console.log(array.sort()); // sorting an array (aplphabetical order)
+ else
+  document.write( "<H1>no duplicated words</H1>");*/
+ 
+ 
+ // function that put duplicated elements into a new array
+ /*var results = [];
+for (var i = 0; i < array.length - 1; i++) {
+    if (arCopySorted[i + 1] == arCopySorted[i]) {
+        results.push(arCopySorted[i]);
+    }
+}
+document.write(results);*/
+ 
+ var original = arCopySorted;
+ function compressArray(original) {
+ 
+	var compressed = [];
+	// make a copy of the input array
+	var copy = original.slice(0);
+ //console.log(copy);
+	// first loop goes over every element
+	for (var i = 0; i < original.length; i++) {
+ 
+		var myCount = 0;	
+		// loop over every element in the copy and see if it's the same
+		for (var w = 0; w < copy.length; w++) {
+			if (original[i] == copy[w]) {
+				// increase amount of times duplicate is found
+				myCount++;
+				// sets item to undefined
+				delete copy[w];
+			}
+		}
+  
+		if (myCount >= 3) {
+			var a = new Object();
+			a.value = original[i];
+			a.count = myCount;
+			compressed.push(a);
+		}
+	}
+ 
+	return compressed;
+};
 
+var newArray = compressArray(arCopySorted);
+  
+ console.log(newArray.sort());
+ 
+ 
 
-
-
-
-
-
-
-
+ 
+ 
+ 
 
 
 });
