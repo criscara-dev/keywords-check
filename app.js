@@ -21,14 +21,22 @@ document.getElementById('btn').addEventListener('click', function() {
  var arCopySorted = array.slice().sort();
  console.log(arCopySorted);
 
+ // make all the words in array lowercase:
+ for(var i = 0; i<arrayLength;i++){
+  var firstLetter = arCopySorted[i][0];
+  var rest = arCopySorted[i].slice(1);
+  arCopySorted[i] = firstLetter.toLowerCase() + rest;
+  var arCopySortedLower = (arCopySorted.join(', ') );
+  console.log(arCopySortedLower);
+ }
  
  // loop through array and print result to the html
- for (i = 0; i < arrayLength; i++) {
+ for (i = 0; i < arCopySorted.length; i++) {
   // this will show each word on a new line 
-  // 1) document.write(array[i],"</br>"); 
+   document.write(arCopySorted[i],"</br>"); 
   // 2) document.write("<h1>" + array[i] + "</h1>"); 
  
-  console.log(array[i]);
+ // console.log(array[i]);
   
  }
 
@@ -92,7 +100,7 @@ document.write(results);*/
 			}
 		}
   
-		if (myCount >= 3) {
+		if (myCount >= 1) {
 			var a = new Object();
 			a.value = original[i];
 			a.count = myCount;
