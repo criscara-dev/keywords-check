@@ -60,7 +60,6 @@ document.getElementById('btn').addEventListener('click', function() {
    // 1) document.write(arCopySorted[i],"</br>"); 
   // 2) document.write("<h1>" + array[i] + "</h1>"); 
  // 3) console.log(array[i]);
-  
  }
 
 /*
@@ -131,8 +130,8 @@ document.write(results);*/
 			a.value = original[i];
 			a.count = myCount;
 			compressed.push(a);
-         document.getElementById('most').innerHTML = a.count + ' times the word ';//!!!!
-         document.getElementById('name').innerHTML = a.value;//!!!!
+         document.getElementById('most').innerHTML = a.count + ' times the word: " ';//!!!!
+         document.getElementById('name').innerHTML = a.value + ' "';//!!!!
 		}
 	}
  
