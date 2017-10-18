@@ -22,21 +22,44 @@ document.getElementById('btn').addEventListener('click', function() {
  console.log(arCopySorted);
 
  // make all the words in array lowercase:
- for(var i = 0; i<arrayLength;i++){
+ /*for(var i = 0; i<arrayLength;i++){
   var firstLetter = arCopySorted[i][0];
   var rest = arCopySorted[i].slice(1);
   arCopySorted[i] = firstLetter.toLowerCase() + rest;
   var arCopySortedLower = (arCopySorted.join(', ') );
   console.log(arCopySortedLower);
+ }*/
+ 
+ 
+ // create a function lowerWords:
+ var  lowerWords = function(inputWords){
+  var outputWords = [];
+  for(var i = 0; i<arrayLength;i++){
+  var firstLetter = inputWords[i][0];
+  var rest = inputWords[i].slice(1);
+  outputWords.push(firstLetter.toLowerCase() + rest);
+  var arCopySortedLower = (inputWords.join(', ') );
+  //console.log(arCopySortedLower);
  }
+  return outputWords;
+ }
+ 
+ console.log(lowerWords(arCopySorted).join(', '));
+ console.log(lowerWords(arCopySorted));
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  // loop through array and print result to the html
  for (i = 0; i < arCopySorted.length; i++) {
   // this will show each word on a new line 
-   document.write(arCopySorted[i],"</br>"); 
+   // 1) document.write(arCopySorted[i],"</br>"); 
   // 2) document.write("<h1>" + array[i] + "</h1>"); 
- 
- // console.log(array[i]);
+ // 3) console.log(array[i]);
   
  }
 
@@ -79,7 +102,10 @@ for (var i = 0; i < array.length - 1; i++) {
 }
 document.write(results);*/
  
- var original = arCopySorted;
+ 
+ 
+ // show in the console words repeated more than... once with value and count.
+ var original = lowerWords(arCopySorted);
  function compressArray(original) {
  
 	var compressed = [];
@@ -100,26 +126,34 @@ document.write(results);*/
 			}
 		}
   
-		if (myCount >= 1) {
+		if (myCount >= 3) {
 			var a = new Object();
 			a.value = original[i];
 			a.count = myCount;
 			compressed.push(a);
+         document.getElementById('most').innerHTML = a.count + ' times the word ';//!!!!
+         document.getElementById('name').innerHTML = a.value;//!!!!
 		}
 	}
  
 	return compressed;
 };
 
-var newArray = compressArray(arCopySorted);
+var newArray = compressArray(lowerWords(arCopySorted));
   
  console.log(newArray.sort());
  
  
 
+ //function that for each count it print to the page the count and the value;
+ 
+ /*if(5 > 3) {
+  var conta = 50;
+  document.getElementById('most').innerHTML = conta;
+ }*/
  
  
- 
+ document.getElementById('output').innerHTML = 'The most used word is:';
 
 
 });
