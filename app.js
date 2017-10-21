@@ -21,18 +21,8 @@ document.getElementById('btn').addEventListener('click', function() {
  var arCopySorted = array.slice().sort();
  console.log(arCopySorted);
 
- // make all the words in array lowercase:
- /*for(var i = 0; i<arrayLength;i++){
-  var firstLetter = arCopySorted[i][0];
-  var rest = arCopySorted[i].slice(1);
-  arCopySorted[i] = firstLetter.toLowerCase() + rest;
-  var arCopySortedLower = (arCopySorted.join(', ') );
-  console.log(arCopySortedLower);
- }*/
- 
- 
- // create a function lowerWords:
- var  lowerWords = function(inputWords){
+  // create a function lowerCaseWords:
+ var  lowerCaseWords = function(inputWords){
   var outputWords = [];
   for(var i = 0; i<arrayLength;i++){
   var firstLetter = inputWords[i][0];
@@ -44,14 +34,8 @@ document.getElementById('btn').addEventListener('click', function() {
   return outputWords;
  }
  
- console.log(lowerWords(arCopySorted).join(', '));
- console.log(lowerWords(arCopySorted));
- 
- 
- 
- 
- 
- 
+ console.log(lowerCaseWords(arCopySorted).join(', '));
+ console.log(lowerCaseWords(arCopySorted));
  
  
  // loop through array and print result to the html
@@ -62,55 +46,15 @@ document.getElementById('btn').addEventListener('click', function() {
  // 3) console.log(array[i]);
  }
 
-/*
- // 4) loop over my array
- array.forEach(function(currentValue, index, ar) {
-  //console.log(currentValue, index, ar);
-  document.getElementById('output').innerHTML = ar;
- });
-*/
- 
- 
- 
- // find if has or not duplicates:
- 
- /*function findDuplicate(array) {
-  
-  var i, iS = 0;
-  for (i = 0; i < arrayLength; i++) {
-   for (iS = i+1; iS < arrayLength; iS++) {
-    if(array[i] === array[iS]) return true;
-  }
- }
-  return false;
-  
-  
- }
-  if ( findDuplicate(array) ) document.write('yes!');
 
- else
-  document.write( "<H1>no duplicated words</H1>");*/
- 
- 
- // function that put duplicated elements into a new array
- /*var results = [];
-for (var i = 0; i < array.length - 1; i++) {
-    if (arCopySorted[i + 1] == arCopySorted[i]) {
-        results.push(arCopySorted[i]);
-    }
-}
-document.write(results);*/
- 
- 
- 
  // show in the console words repeated more than... once with value and count.
- var original = lowerWords(arCopySorted);
+ var original = lowerCaseWords(arCopySorted);
  function compressArray(original) {
  
 	var compressed = [];
 	// make a copy of the input array
 	var copy = original.slice(0);
- //console.log(copy);
+  
 	// first loop goes over every element
 	for (var i = 0; i < original.length; i++) {
  
@@ -124,36 +68,35 @@ document.write(results);*/
 				delete copy[w];
 			}
 		}
-  
-		if (myCount >= 3) {
-			var a = new Object();
+
+		if (myCount > 1) {
+			var a = new Object(); 
 			a.value = original[i];
 			a.count = myCount;
-			compressed.push(a);
-         document.getElementById('most').innerHTML = a.count + ' times the word: " ';//!!!!
-         document.getElementById('name').innerHTML = a.value + ' "';//!!!!
+			compressed.push(a);        
 		}
 	}
  
-	return compressed;
+	//return compressed;
+  for (var i = 0; i < compressed.length; i++) {
+    var message = compressed[i].value + ' : ' + compressed[i].count + ' times.';
+    //alert(message);
+    document.getElementById("print").innerHTML += message + '</br>';
+  }
+
 };
 
-var newArray = compressArray(lowerWords(arCopySorted));
+var newArray = compressArray(lowerCaseWords(arCopySorted));
   
- console.log(newArray.sort());
+ //console.log(newArray);
+  
  
- 
+ document.getElementById('output').innerHTML = 'The most used word are:';
 
- //function that for each count it print to the page the count and the value;
- 
- /*if(5 > 3) {
-  var conta = 50;
-  document.getElementById('most').innerHTML = conta;
- }*/
  
  
- document.getElementById('output').innerHTML = 'The most used word is:';
-
+ 
+ 
 
 });
 
