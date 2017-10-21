@@ -36,15 +36,6 @@ document.getElementById('btn').addEventListener('click', function() {
  
  console.log(lowerCaseWords(arCopySorted).join(', '));
  console.log(lowerCaseWords(arCopySorted));
- 
- 
- // loop through array and print result to the html
- for (i = 0; i < arCopySorted.length; i++) {
-  // this will show each word on a new line 
-   // 1) document.write(arCopySorted[i],"</br>"); 
-  // 2) document.write("<h1>" + array[i] + "</h1>"); 
- // 3) console.log(array[i]);
- }
 
 
  // show in the console words repeated more than... once with value and count.
